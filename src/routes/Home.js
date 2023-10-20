@@ -96,6 +96,14 @@ function Home() {
                 <td>{person.nome}</td>
                 <td>{person.numero}</td>
                 <td></td>
+                <td>
+                  <button className="btn btn-sucess">
+                    <i class="bi bi-pencil"></i>Editar
+                    </button>
+                  <button className="btn btn-danger mx-2">
+                    <i class="bi bi=pencil"></i>Excluir
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
