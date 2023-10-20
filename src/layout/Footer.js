@@ -11,7 +11,7 @@ function Footer() {
           <i className="bi bi-whatsapp p-2 fs-3"></i>
         </a>
         <h4>
-          Desenvolvido por &copy;Wisner - 2023
+          Desenvolvido por &copy;Gabrielle Andrade - 2023
         </h4>
       </div>
     );

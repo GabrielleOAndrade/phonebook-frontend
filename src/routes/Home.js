@@ -3,28 +3,42 @@ import personService from "../services/phonebook";
 
 function Home() {
   const [persons, setPersons] = useState([]);
-  const [nome, setNome] = useState('') 
+  const [nome, setNome] = useState("");
+  const [numero, setNumero] = useState("");
 
   useEffect(() => {
+    fetchData(); //Carrega os dados iniciais
+   },[]);
+
+  const fetchData = () => {
     personService.getAll().then((response) => {
-      setPersons(response.data);
-    });
-  }, []);
+      setPersons(response.data);  
+  })
+  }; 
+    const addPerson = async (event) => {
+      event.preventDefault();
+    const personObject = {
+      nome: nome,
+      numero: numero,
+    }
+    
+    await personService.create(personObject);
+   // console.log("button clicked", event.target);
+   setNome("");
+   setNumero("");
+   // Após criação, atualize a lista de persons chamando fetchData novamente
+   fetchData();
+  };
 
   const handleNomeChange = (event) => {
-    console.log(event.target,value);
+    // console.log(event.target.value);
     setNome(event.target.value);
-  }
- 
-  const handleNumeroChange = (event) => {
-    console.log(event.target.value);
-    setNumero(event.target.value);
-  }
+  };
 
-  const addPerson = (event) => {
-    event.preventDefault()
-    console.log('button clicked', event.target)
-  }
+  const handleNumeroChange = (event) => {
+    // console.log(event.target.value);
+    setNumero(event.target.value);
+  };
 
   return (
     <div className="container">
@@ -38,6 +52,7 @@ function Home() {
             type="text"
             placeholder="Digite o seu nome..."
             className="form-control"
+            onChange={handleNomeChange}
           />
         </div>
         <div className="mb-3">
@@ -48,6 +63,7 @@ function Home() {
             type="text"
             placeholder="Digite o seu telefone..."
             className="form-control"
+            onChange={handleNumeroChange}
           />
           <button className="btn btn-success mt-4">Cadastrar</button>
         </div>
@@ -74,6 +90,6 @@ function Home() {
       </table>
     </div>
   );
-}
+          }
 
 export default Home;
