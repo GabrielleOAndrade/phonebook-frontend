@@ -46,6 +46,12 @@ function Home() {
     setShowForm(!showForm);
   };
 
+  const handleDelete = async (id) => {
+    await personService.remove(id);
+    //Após a exclusão, atualize a lista de persons fetchData novamente
+    fetchData();
+  };
+
   return (
     <div className="container">
       <h2>Home</h2>
@@ -102,6 +108,12 @@ function Home() {
                     </button>
                   <button className="btn btn-danger mx-2">
                     <i class="bi bi=pencil"></i>Excluir
+                  </button>
+                  <button
+                  className="btn btn-danger mx-2"
+                  onClick={() => handleDelete(person.id)}
+                  >
+                    <i className="bi bi-trash3"></i>Excluir
                   </button>
                 </td>
               </tr>
