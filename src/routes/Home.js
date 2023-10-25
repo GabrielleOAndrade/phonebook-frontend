@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import personService from "../services/phonebook";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [persons, setPersons] = useState([]);
@@ -103,13 +104,10 @@ function Home() {
                 <td>{person.numero}</td>
                 <td></td>
                 <td>
-                  <button className="btn btn-sucess">
+                  <Link to={`/${person.id}`} className="btn btn-success">
                     <i class="bi bi-pencil"></i>Editar
-                    </button>
-                  <button className="btn btn-danger mx-2">
-                    <i class="bi bi=pencil"></i>Excluir
-                  </button>
-                  <button
+                    </Link>
+                    <button
                   className="btn btn-danger mx-2"
                   onClick={() => handleDelete(person.id)}
                   >
